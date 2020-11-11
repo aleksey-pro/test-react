@@ -12,11 +12,11 @@ module.exports = merge(common, {
           chunks: 'all',
           enforce: true,
         },
-        commons: {
-          test: /[\\/]node_modules[\\/]/i,
-          name: 'vendors',
-          chunks: 'all',
-        },
+        // commons: {
+        //   test: /[\\/]node_modules[\\/]/i,
+        //   name: 'vendors',
+        //   chunks: 'all',
+        // },
       },
     },
   },

@@ -11,16 +11,19 @@ const paths = {
 
 module.exports = {
   entry: {
-    main: './src/index.js',
+    main: './src/index.jsx',
   },
   output: {
     filename: devMode ? "js/[name].js" : "js/[name].[chunkhash:8].js",
     path: paths.dist,
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [{ loader: 'babel-loader' }],
       },
@@ -35,7 +38,25 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader',
+          {        
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: "img/",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|otf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
         ],
       },
     ],
